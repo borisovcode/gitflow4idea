@@ -19,10 +19,12 @@ public class IDEAUtils {
     /**
      * Resolves the Git repository the user is currently working with.
      * <p>
-     * This is a non-deprecated replacement for the historically used
-     * {@code GitBranchUtil.getCurrentRepository(Project)}: it looks the repository
-     * up for the currently selected file and falls back to the only repository of
-     * the project.
+     * This is a replacement for the historically used (and now deprecated)
+     * {@code GitBranchUtil.getCurrentRepository(Project)}. Only the "quick"
+     * lookups are used on purpose: the regular {@code getRepositoryForFile} /
+     * {@code getRepositoryForRoot} variants perform a synchronous repository
+     * update, which is not allowed on the EDT (where the status bar widget and
+     * the actions run).
      */
     @Nullable
     public static GitRepository getCurrentRepository(@NotNull Project project) {
@@ -30,12 +32,13 @@ public class IDEAUtils {
 
         VirtualFile selectedFile = DvcsUtil.getSelectedFile(project);
         if (selectedFile != null) {
-            GitRepository repository = manager.getRepositoryForFile(selectedFile);
+            GitRepository repository = manager.getRepositoryForFileQuick(selectedFile);
             if (repository != null) {
                 return repository;
             }
         }
 
+        // Fall back to the only repository of the project, if there is exactly one.
         List<GitRepository> repositories = manager.getRepositories();
         return repositories.size() == 1 ? repositories.get(0) : null;
     }
