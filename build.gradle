@@ -1,3 +1,5 @@
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+
 plugins {
     id 'java'
     id 'org.jetbrains.intellij.platform' version '2.19.0'
@@ -55,10 +57,11 @@ intellijPlatform {
     instrumentCode = true
 
     pluginVerification {
-        // Verify against the IntelliJ Platform this plugin is built for
-        // (WebStorm 2026.2.3) instead of downloading the whole recommended set.
+        // Verify against the platforms this plugin targets: the IntelliJ Platform
+        // it is built against (WebStorm 2026.2.3) and PyCharm 2026.2.3.
         ides {
             current()
+            create(IntelliJPlatformType.PyCharm, '2026.2.3')
         }
     }
     pluginConfiguration {
