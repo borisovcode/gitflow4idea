@@ -1,6 +1,6 @@
 package gitflow.ui;
 
-import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vcs.VcsTaskHandler;
 import com.intellij.tasks.LocalTask;
@@ -64,7 +64,7 @@ public class GitflowOpenTaskPanel extends TaskDialogPanel implements ItemListene
             myVcsTaskHandler = vcsTaskHAndlers[0];
         }
 
-        gitflowState = ServiceManager.getService(GitflowState.class);
+        gitflowState = ApplicationManager.getApplication().getService(GitflowState.class);
         gitflowBranchUtil = GitflowBranchUtilManager.getBranchUtil(myRepo);
 
         GitflowConfigUtil gitflowConfigUtil = GitflowConfigUtil.getInstance(project, myRepo);
