@@ -98,7 +98,7 @@ public class GitflowWidget extends GitBranchWidget implements GitRepositoryChang
         if (project == null) {
             return null;
         }
-        GitRepository repo = GitBranchUtil.getCurrentRepository(project);
+        GitRepository repo = IDEAUtils.getCurrentRepository(project);
         if (repo == null) {
             return null;
         }
@@ -181,7 +181,7 @@ public class GitflowWidget extends GitBranchWidget implements GitRepositoryChang
             return;
         }
 
-        GitRepository repo = GitBranchUtil.getCurrentRepository(project);
+        GitRepository repo = IDEAUtils.getCurrentRepository(project);
         if (repo == null) { // the file is not under version control => display nothing
             emptyTextAndTooltip();
             return;

@@ -29,6 +29,6 @@ public class GitflowActions {
 
         AnActionEvent event = AnActionEvent.createEvent(
                 resolveAction, dataContext, null, ActionPlaces.UNKNOWN, ActionUiKind.NONE, null);
-        ActionUtil.invokeAction(resolveAction, event, null);
+        ActionUtil.performAction(resolveAction, event);
     }
 }
