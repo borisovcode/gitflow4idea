@@ -1,3 +1,8 @@
+> **This fork is no longer maintained.**
+> Active development continues in **[Gitflow Navigator](https://github.com/borisovcode/gitflow-navigator)** —
+> a maintained fork with support for IntelliJ Platform 2026.2/2026.3 and both
+> git-flow AVH and git-flow-next.
+
 # Git Flow Integration for Intellij
 
 
